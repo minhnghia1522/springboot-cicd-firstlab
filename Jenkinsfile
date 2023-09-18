@@ -6,12 +6,6 @@ pipeline {
         MYSQL_ROOT_LOGIN = credentials('mysql-root-login')
     }
     stages {
-        stage('Open folder source code'){
-            steps {
-             sh 'cd mnt/a/Workspace/CICD/springboot-cicd-firstlab'
-             }
-        }
-
         stage('Packaging/Pushing imagae') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
