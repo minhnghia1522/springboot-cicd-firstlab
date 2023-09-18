@@ -2,17 +2,27 @@ pipeline {
 
     agent any
 
+    tools {
+        maven 'my-maven'
+    }
     environment {
         MYSQL_ROOT_LOGIN = credentials('mysql-root-login')
     }
     stages {
 
-        stage('Packaging/Pushing imagae') {
+        stage('Build with maven'){
+            steps {
+                sh 'mvn --version'
+                sh 'java --version'
+                sh 'mvn clean package -Dmaven.test.failure.ignore=true'
+            }
+        }
 
+        stage('Packaging/Pushing imagae') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker build -t khaliddinh/springboot .'
-                    sh 'docker push khaliddinh/springboot'
+                    sh 'docker build -t minhnghia22/springboot .'
+                    sh 'docker push minhnghia22/springboot'
                 }
             }
         }
