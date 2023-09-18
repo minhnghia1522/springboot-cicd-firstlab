@@ -10,7 +10,7 @@ pipeline {
         stage('Packaging/Pushing imagae') {
 
             steps {
-                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                withDockerRegistry(credentialsId: 'Dockerhub', url: 'https://index.docker.io/v1/') {
                     sh 'docker build -t minhnghia22/springboot .'
                     sh 'docker push minhnghia22/springboot'
                 }
