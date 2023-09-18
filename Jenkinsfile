@@ -7,7 +7,9 @@ pipeline {
     }
     stages {
         stage('Open folder source code'){
-            sh 'cd mnt/a/Workspace/CICD/springboot-cicd-firstlab'
+            steps {
+             sh 'cd mnt/a/Workspace/CICD/springboot-cicd-firstlab'
+             }
         }
 
         stage('Packaging/Pushing imagae') {
