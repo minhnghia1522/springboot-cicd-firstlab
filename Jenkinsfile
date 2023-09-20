@@ -31,7 +31,7 @@ pipeline {
         sh 'docker volume rm n-mysql-data || echo "no volume"'
 
         sh "docker run --name n-mysql --rm --network dev -v n-mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_LOGIN_PSW} -e MYSQL_DATABASE=db_example  -d mysql:8.0 "
-        sh 'sleep 20'
+        sh 'sleep 120'
         sh "docker exec -i n-mysql mysql --user=root --password=${MYSQL_ROOT_LOGIN_PSW} < script"
       }
     }
