@@ -37,10 +37,17 @@ public class MainController {
     return userRepository.findAll();
   }
 
-  @GetMapping(path = "/find")
+  @PostMapping(path = "/find")
   public @ResponseBody User findById(@RequestParam Integer id) {
     // This returns a JSON or XML with the users
     Optional<User> result = userRepository.findById(id);
     return result.orElseThrow();
+  }
+
+  @PostMapping(path = "/delete")
+  public @ResponseBody String delete(@RequestParam Integer id) {
+    // This returns a JSON or XML with the users
+    userRepository.deleteById(id);
+    return "Deleted";
   }
 }
